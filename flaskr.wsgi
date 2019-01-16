@@ -1,6 +1,6 @@
 import sys
 
 sys.stdout = sys.stderr
-sys.path.insert(0, '/home/ubuntu/notebook/flaskr')
+sys.path.insert(0, '/home/ubuntu/notebook/yts-api')
 
-from flaskr import app as application
+from app import app as application
