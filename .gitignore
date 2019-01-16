@@ -3,3 +3,7 @@
 
 # ignore movie thumbnail
 static/images/movies/
+
+# ignore notebook autosave files
+
+*.ipynb_checkpoints/
