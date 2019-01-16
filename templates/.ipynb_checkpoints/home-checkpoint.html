@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content -%}
+
+<nav aria-label="...">
+  <ul class="pagination">
+    {% if data.page_number > 1 -%}  
+    <li class="page-item">
+        <a class="page-link" href="{{ url_for('browse', page_id=data.page_number-1) }}">Previous</a>
+    {% else %}
+    <li class="page-item disabled">    
+      <span class="page-link">Previous</span>
+    {% endif %}
+    </li>
+      {% for page in peges -%}
+      {% if page == data.page_number -%}
+       <li class="page-item active">
+          <span class="page-link">
+            {{ page }}
+            <span class="sr-only">(current)</span>
+          </span>
+        </li>
+      {% else -%}
+     <li class="page-item"><a class="page-link" href="{{ url_for('browse', page_id=page) }}">{{ page }}</a></li> 
+      {% endif %}
+      {% endfor %}
+    <li class="page-item">
+      <a class="page-link" href="{{ url_for('browse', page_id=data.page_number+1) }}">Next</a>
+    </li>
+  </ul>
+</nav>
+
+<section>
+    <div class="row">
+{% for movie in data.movies -%}
+        <div class="col-md-3"><a href="{{ url_for('movieDetails', imdbId=movie.id) }}"><img src="{{ url_for('welcome') }}static/images/movies/{{ movie.slug | replace('-','_')}}/large-cover.jpg" class="img-thumbnail" /></a>
+            <div style="max-width: 180px">{{ movie.title }} ({{ movie.year }})</div>
+        </div>    
+{% endfor %}
+    </div>    
+</section>
+
+<nav aria-label="...">
+  <ul class="pagination">
+    {% if data.page_number > 1 -%}  
+    <li class="page-item">
+        <a class="page-link" href="{{ url_for('browse', page_id=data.page_number-1) }}">Previous</a>
+    {% else %}
+    <li class="page-item disabled">    
+      <span class="page-link">Previous</span>
+    {% endif %}
+    </li>
+      {% for page in peges -%}
+      {% if page == data.page_number -%}
+       <li class="page-item active">
+          <span class="page-link">
+            {{ page }}
+            <span class="sr-only">(current)</span>
+          </span>
+        </li>
+      {% else -%}
+     <li class="page-item"><a class="page-link" href="{{ url_for('browse', page_id=page) }}">{{ page }}</a></li> 
+      {% endif %}
+      {% endfor %}
+    <li class="page-item">
+      <a class="page-link" href="{{ url_for('browse', page_id=data.page_number+1) }}">Next</a>
+    </li>
+  </ul>
+</nav>
+
+{% endblock %}
+
+<!--- FOOTER BLOCK START --->
+{% block footer %}
+<h5>I am footer</h5>
+{% endblock %}
